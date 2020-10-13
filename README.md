@@ -27,6 +27,18 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm install -g serve`
+
+intall serve for running production mode
+
+### `serve -s build`
+or
+### `serve -s build -l 4000`
+
+command shown above will serve your static site on the port 5000. Like many of serve’s internal settings, the port can be adjusted using the `-l` or `--listen` flags
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
 ### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
