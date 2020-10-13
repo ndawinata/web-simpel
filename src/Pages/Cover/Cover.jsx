@@ -10,7 +10,7 @@ import jsonToTxt from "json-to-txt";
 import './cover.css'
 
 const dateNow = moment().format('YYYY-MM-D')
-const dateLast = moment().subtract(1, 'days').format('YYYY-MM-D')
+// const dateLast = moment().subtract(1, 'days').format('YYYY-MM-D')
 
 
 const MyComponent = (props) => {
@@ -79,15 +79,15 @@ class Cover extends Component {
         columns:[
             {
                 name:'Date',
-                selector:'date',
+                selector:'waktu',
                 sortable: true,
-                cell: d => moment.utc(d.date).format('D MMMM YYYY')
+                cell: d => moment(d.waktu).format('D MMMM YYYY')
             },
             {
                 name:'Time',
-                selector:'date',
+                selector:'waktu',
                 sortable: true,
-                cell: d => moment.utc(d.date).format('HH:mm:ss')
+                cell: d => moment(d.waktu).format('HH:mm:ss')
             },
             {
                 name:'Alat',
@@ -140,10 +140,11 @@ class Cover extends Component {
     // }
 
     componentDidMount(){
-        const url = `https://cors-anywhere.herokuapp.com/http://139.180.220.65:3000/api/users/laporan/${dateLast}/${dateNow}`
-        Axios.get(`https://cors-anywhere.herokuapp.com/http://139.180.220.65:3000/api/users/laporan/2020-09-30/2020-10-01`)
+        // const url = `https://cors-anywhere.herokuapp.com/http://139.180.220.65:3000/api/users/laporan/${dateLast}/${dateNow}`
+        Axios.get(`https://cors-anywhere.herokuapp.com/http://139.180.220.65:3000/api/users/laporan/2020-09-30/${dateNow}`)
             .then((val)=>{
                 let data = val.data.data
+                console.log(data)
                 data.reverse()
                 this.setState({
                     ...this.state,
@@ -157,8 +158,8 @@ class Cover extends Component {
     }
 
     updateData(){
-        const url = `https://cors-anywhere.herokuapp.com/http://139.180.220.65:3000/api/users/laporan/${dateLast}/${dateNow}`
-        Axios.get(`https://cors-anywhere.herokuapp.com/http://139.180.220.65:3000/api/users/laporan/2020-09-30/2020-10-01`)
+        // const url = `https://cors-anywhere.herokuapp.com/http://139.180.220.65:3000/api/users/laporan/${dateLast}/${dateNow}`
+        Axios.get(`https://cors-anywhere.herokuapp.com/http://139.180.220.65:3000/api/users/laporan/2020-09-30/${dateNow}`)
             .then((val)=>{
                 let data = val.data.data
                 data.reverse()
@@ -197,9 +198,16 @@ class Cover extends Component {
                         <div className="row">
                             <div className="col-sm">
                                 <DataTableExtensions {...this.state.tableData}>
-                                    <DataTable theme='gelap' progressPending={this.state.loading} noHeader
-                                        defaultSortField="id" defaultSortAsc={false} pagination paginationPerPage={5}
-                                        highlightOnHover customStyles={customStyles} />
+                                    <DataTable 
+                                        theme='gelap' 
+                                        progressPending={this.state.loading} 
+                                        noHeader
+                                        defaultSortField="id" 
+                                        defaultSortAsc={false} 
+                                        pagination 
+                                        paginationPerPage={5}
+                                        highlightOnHover 
+                                        customStyles={customStyles} />
                                 </DataTableExtensions>
                                 <button type="button" className="btn btn-outline-light m-2" onClick={()=>{
                                     this.updateData()
