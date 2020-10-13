@@ -39,6 +39,11 @@ command shown above will serve your static site on the port 5000. Like many of s
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+ ### `pm2 serve build 8000 --name "Web-Simpel (8000)"`
+
+running with pm2
+
+
 ### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
